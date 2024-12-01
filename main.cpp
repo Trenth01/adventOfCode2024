@@ -3,6 +3,7 @@
 #include <map>
 
 #include "solutions/day1.hpp"
+#include "solutions/day2.hpp"
 //
 // Created by Trent on 12/1/2024.
 //
@@ -27,7 +28,7 @@ vector<string> fileInput(const string& fileName) {
     return lines;
 }
 
-void solveDay(int day, const function<tuple<int, int>(const vector<string>&)>& solveFunction) {
+void solveDay(const int day, const function<tuple<int, int>(const vector<string>&)>& solveFunction) {
     const string inputFile = "day" + to_string(day) + ".txt";
     const vector<string> inputText = fileInput(inputFile);
 
@@ -40,7 +41,8 @@ void solveDay(int day, const function<tuple<int, int>(const vector<string>&)>& s
 int main() {
 
     map<int, function<tuple<int, int>(const vector<string>&)>> solutions = {
-        {1, day1}
+        {1, day1},
+        {2, day2}
         // Add more days here, e.g., {2, day2}, {3, day3}, etc.
     };
     if (constexpr int day = 1; solutions.contains(day)) {
