@@ -22,7 +22,7 @@ inline int part1(const vector<int>& leftList, const vector<int>& rightList) {
 
 }
 
-inline int part2(const vector<int>& leftList, vector<int> rightList) {
+inline int part2(const vector<int>& leftList, const vector<int>& rightList) {
     int totalDiff = 0;
     unordered_map<int, int> rightMap;
 
@@ -39,8 +39,7 @@ inline int part2(const vector<int>& leftList, vector<int> rightList) {
 
 
 inline tuple<int, int> day1(const vector<string>& input) {
-    vector<int> leftList;
-    vector<int> rightList;
+    vector<int> leftList, rightList;
     for (const auto & i : input) {
         istringstream ss(i);
         int left, right;
