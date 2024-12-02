@@ -45,12 +45,12 @@ int main() {
         {2, day2}
         // Add more days here, e.g., {2, day2}, {3, day3}, etc.
     };
-    if (constexpr int day = 1; solutions.contains(day)) {
+    if (constexpr int day = 2; solutions.contains(day)) {
         const auto start = std::chrono::high_resolution_clock::now();
         solveDay(day, solutions[day]);
         const auto stop = std::chrono::high_resolution_clock::now();
         const auto duration = duration_cast<chrono::microseconds>(stop - start);
-        cout << duration.count() << endl;
+        cout << "Duration in nanoseconds: " << duration.count() << endl;
     } else {
         cerr << "Solution for day " << day << " not implemented!" << endl;
     }
