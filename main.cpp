@@ -4,14 +4,14 @@
 
 #include "solutions/day1.hpp"
 #include "solutions/day2.hpp"
+#include "solutions/day3.hpp"
 //
 // Created by Trent on 12/1/2024.
 //
 
-
 vector<string> fileInput(const string& fileName) {
     const string filePath = "../inputs/" + fileName;
-    ifstream inputFile = ifstream(filePath);
+    auto inputFile = ifstream(filePath);
     vector<string> lines;
     string line;
 
@@ -42,10 +42,10 @@ int main() {
 
     map<int, function<tuple<int, int>(const vector<string>&)>> solutions = {
         {1, day1},
-        {2, day2}
-        // Add more days here, e.g., {2, day2}, {3, day3}, etc.
+        {2, day2},
+        {3, day3}
     };
-    if (constexpr int day = 2; solutions.contains(day)) {
+    if (constexpr int day = 3; solutions.contains(day)) {
         const auto start = std::chrono::high_resolution_clock::now();
         solveDay(day, solutions[day]);
         const auto stop = std::chrono::high_resolution_clock::now();
