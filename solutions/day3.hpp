@@ -20,7 +20,6 @@ inline int computeRegexSum(const string& i, const regex& pattern) {
     });
 }
 
-
 inline tuple<int, int> day3(const vector<string>& input) {
     const regex multiplier(R"(mul\((\d*),(\d*)\))");
 
