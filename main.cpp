@@ -5,6 +5,7 @@
 #include "solutions/day1.hpp"
 #include "solutions/day2.hpp"
 #include "solutions/day3.hpp"
+#include "solutions/day4.hpp"
 //
 // Created by Trent on 12/1/2024.
 //
@@ -43,9 +44,10 @@ int main() {
     map<int, function<tuple<int, int>(const vector<string>&)>> solutions = {
         {1, day1},
         {2, day2},
-        {3, day3}
+        {3, day3},
+        {4,day4}
     };
-    if (constexpr int day = 3; solutions.contains(day)) {
+    if (constexpr int day = 4; solutions.contains(day)) {
         const auto start = std::chrono::high_resolution_clock::now();
         solveDay(day, solutions[day]);
         const auto stop = std::chrono::high_resolution_clock::now();
