@@ -10,19 +10,19 @@ using namespace std;
 
 class GuardNotFoundException final : public std::exception {
 public:
-    char * what () {
+    [[nodiscard]] const char* what() const noexcept override {
         return "GuardNotFound";
     }
 };
 
 class InfLoopException final : public std::exception {
 public:
-    char * what () {
+    [[nodiscard]] const char* what() const noexcept override {
         return "inf loop";
     }
 };
 
-inline vector <char> GUARD_DIRECTIONS = {'^', '>', 'v', '<'} ;
+inline vector GUARD_DIRECTIONS = {'^', '>', 'v', '<'} ;
 inline vector <tuple<int, int>> dx_dy = {{0, -1}, {1,0}, {0, 1}, {-1, 0}};
 constexpr char barrier = '#';
 
