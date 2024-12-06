@@ -16,7 +16,7 @@ inline string filterDonts(const string& instructions) {
 
 inline int computeRegexSum(const string& i) {
     const regex multiplier(R"(mul\((\d*),(\d*)\))");
-    return accumulate(sregex_iterator(i.begin(), i.end(), pattern), sregex_iterator(), 0, [](int sum, const smatch& match) {
+    return accumulate(sregex_iterator(i.begin(), i.end(), multiplier), sregex_iterator(), 0, [](int sum, const smatch& match) {
         return sum+stoi(match[1]) * stoi(match[2]);
     });
 }
