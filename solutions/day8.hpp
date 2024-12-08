@@ -10,17 +10,12 @@
 using namespace std;
 
 
-inline map<char, set<tuple<int,int>>> find_frequencies(const vector<string>& input_map) {
-    map<char, set<tuple<int,int>>> frequency_map;
-    for(int y = 0; y < input_map.size(); y++) {
-        for(int x = 0; x < input_map[y].size(); x++) {
-            if(iswalnum(input_map[y][x])){
-                auto coords = make_tuple(x, y);
-                if (frequency_map.contains(input_map[y][x])) {
-                    frequency_map[input_map[y][x]].insert(coords);
-                }else{
-                    frequency_map[input_map[y][x]] = {coords};
-                }
+inline map<char, set<tuple<int, int>>> find_frequencies(const vector<string>& input_map) {
+    map<char, set<tuple<int, int>>> frequency_map;
+    for (int y = 0; y < input_map.size(); y++) {
+        for (int x = 0; x < input_map[y].size(); x++) {
+            if (iswalnum(input_map[y][x])) {
+                frequency_map[input_map[y][x]].emplace(x, y);
             }
         }
     }
@@ -57,25 +52,21 @@ inline tuple<int, int> day8(const vector<string>& input_map) {
     for (auto frequency_maps = find_frequencies(input_map); const auto&[fst, snd]: frequency_maps) {
         for (tuple coords : snd) {
             for (tuple distance: find_distances(coords, snd)) {
-                int x = get<0>(coords), y = get<1>(coords), dx=get<0>(distance), dy=get<1>(distance), max_x = input_map[0].size(), max_y = input_map.size();
+                const int x = get<0>(coords);
+                const int y = get<1>(coords);
+                const int dx=get<0>(distance);
+                const int dy=get<1>(distance);
                 if (!is_frequency(coords, snd, distance) && is_in_bounds(coords, distance, input_map)) {
                     part1_antinodes.insert(make_tuple(x+dx, y+dy));
                 }
-                int multiplier = 1;
-                while (abs(dy) * multiplier < max_y && abs(dx) * multiplier < max_x) {
-                    auto new_distance = make_tuple(dx*multiplier, dy*multiplier);
-                    if (is_in_bounds(coords, new_distance, input_map)) {
+                for (int multiplier : {1, -1}) {
+                    tuple<int, int> scaled_distance;
+                    while (true) {
+                        scaled_distance = make_tuple(get<0>(distance) * multiplier, get<1>(distance) * multiplier);
+                        if (!is_in_bounds(coords, scaled_distance, input_map)) break;
                         part2_antinodes.insert(make_tuple(x+dx*multiplier, y+dy*multiplier));
+                        multiplier += (multiplier > 0) ? 1 : -1;
                     }
-                    multiplier++;
-                }
-                multiplier = -1;
-                while (abs(dy* multiplier) < max_y && abs(dx * multiplier) < max_x) {
-                    auto new_distance = make_tuple(dx*multiplier, dy*multiplier);
-                    if (is_in_bounds(coords, new_distance, input_map)) {
-                        part2_antinodes.insert(make_tuple(x+dx*multiplier, y+dy*multiplier));
-                    }
-                    multiplier--;
                 }
             }
         }
