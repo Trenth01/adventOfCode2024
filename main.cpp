@@ -8,6 +8,8 @@
 #include "solutions/day4.hpp"
 #include "solutions/day5.hpp"
 #include "solutions/day6.hpp"
+#include "solutions/day7.hpp"
+#include "solutions/day8.hpp"
 //
 // Created by Trent on 12/1/2024.
 //
@@ -42,16 +44,17 @@ void solveDay(const int day, const function<tuple<int, int>(const vector<string>
 }
 
 int main() {
-
     map<int, function<tuple<int, int>(const vector<string>&)>> solutions = {
         {1, day1},
         {2, day2},
         {3, day3},
         {4, day4},
         {5, day5},
-        {6, day6}
+        {6, day6},
+        {7, day7},
+        {8, day8}
     };
-    if (constexpr int day = 6; solutions.contains(day)) {
+    if (constexpr int day = 8; solutions.contains(day)) {
         const auto start = std::chrono::high_resolution_clock::now();
         solveDay(day, solutions[day]);
         const auto stop = std::chrono::high_resolution_clock::now();
