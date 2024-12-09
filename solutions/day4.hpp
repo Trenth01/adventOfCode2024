@@ -121,9 +121,7 @@ inline tuple<int, int> day4(const vector<string>& input) {
       if(input[y][x] == 'A') {
         x_mas_count+=check_x_mas(input, x, y);
       }
-
     }
   }
-
   return {xmas_count, x_mas_count};
 }
